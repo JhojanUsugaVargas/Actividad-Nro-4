@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseña tu Cuento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #storyOutput {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            display: none;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diseña tu Cuento</h1>
+    <div class="form-container">
+        <form id="storyForm">
+            <label for="fullName">Nombres y Apellidos:</label>
+            <input type="text" id="fullName" required>
+
+            <label for="nickname">Apodo:</label>
+            <input type="text" id="nickname" required>
+
+            <label for="hairColor">Color de Cabello:</label>
+            <select id="hairColor" required>
+                <option value="">Selecciona un color</option>
+                <option value="Negro">Negro</option>
+                <option value="Castaño">Castaño</option>
+                <option value="Rubio">Rubio</option>
+                <option value="Rojo">Rojo</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <label for="eyeColor">Color de Ojos:</label>
+            <select id="eyeColor" required>
+                <option value="">Selecciona un color</option>
+                <option value="Azules">Azules</option>
+                <option value="Verdes">Verdes</option>
+                <option value="Cafés">Cafés</option>
+                <option value="Grises">Grises</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <label for="age">Edad:</label>
+            <input type="number" id="age" min="1" required>
+
+            <label for="hobby">Hobby:</label>
+            <input type="text" id="hobby" required>
+
+            <button type="submit">Continuar</button>
+        </form>
+    </div>
+    <div id="storyOutput"></div>
+
+    <script>
+        document.getElementById('storyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obtener valores del formulario
+            const fullName = document.getElementById('fullName').value.trim();
+            const nickname = document.getElementById('nickname').value.trim();
+            const hairColor = document.getElementById('hairColor').value;
+            const eyeColor = document.getElementById('eyeColor').value;
+            const age = document.getElementById('age').value;
+            const hobby = document.getElementById('hobby').value.trim();
+
+            // Validar que todos los campos estén llenos
+            if (!fullName || !nickname || !hairColor || !eyeColor || !age || !hobby) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            // Plantillas de cuentos
+            const storyTemplates = [
+                `
+                    <h2>¡Tu Cuento!</h2>
+                    <p>Érase una vez una persona llamada <strong>${fullName}</strong>, conocida por todos como <strong>${nickname}</strong>. 
+                    Con su cabello <strong>${hairColor.toLowerCase()}</strong> brillando bajo el sol y sus ojos <strong>${eyeColor.toLowerCase()}</strong>, 
+                    ${nickname}, de ${age} años, vivía aventuras increíbles. Su pasión por <strong>${hobby.toLowerCase()}</strong> 
+                    lo llevó a descubrir un mundo mágico escondido en su ciudad. Un día, mientras practicaba su hobby, encontró un objeto misterioso que 
+                    cambió su vida para siempre. Desde entonces, ${nickname} se convirtió en una leyenda, inspirando a todos con su valentía y creatividad.</p>
+                `,
+                `
+                    <h2>¡Tu Cuento!</h2>
+                    <p>En un reino lejano, vivía <strong>${fullName}</strong>, a quien todos llamaban <strong>${nickname}</strong>. 
+                    Su cabello <strong>${hairColor.toLowerCase()}</strong> ondeaba al viento mientras sus ojos <strong>${eyeColor.toLowerCase()}</strong> 
+                    observaban el horizonte. A sus ${age} años, ${nickname} tenía un amor especial por <strong>${hobby.toLowerCase()}</strong>. 
+                    Una noche, mientras disfrutaba de su hobby, un dragón mágico apareció y le ofreció un deseo. Con su astucia, ${nickname} pidió algo que 
+                    transformó su pueblo en un lugar de maravillas eternas.</p>
+                `,
+                `
+                    <h2>¡Tu Cuento!</h2>
+                    <p>Hace mucho tiempo, <strong>${fullName}</strong>, mejor conocido como <strong>${nickname}</strong>, recorría los bosques con su cabello 
+                    <strong>${hairColor.toLowerCase()}</strong> y sus ojos <strong>${eyeColor.toLowerCase()}</strong>. A sus ${age} años, su pasión por 
+                    <strong>${hobby.toLowerCase()}</strong> lo llevó a un encuentro con un espíritu del bosque. Este espíritu le dio un mapa mágico que lo guió 
+                    a un tesoro escondido, el cual usó para ayudar a quienes más lo necesitaban.</p>
+                `,
+                `
+                    <h2>¡Tu Cuento!</h2>
+                    <p>En una ciudad futurista, <strong>${fullName}</strong>, apodado <strong>${nickname}</strong>, destacaba por su cabello 
+                    <strong>${hairColor.toLowerCase()}</strong> y sus ojos <strong>${eyeColor.toLowerCase()}</strong>. A los ${age} años, 
+                    ${nickname} era conocido por su habilidad en <strong>${hobby.toLowerCase()}</strong>. Un día, mientras practicaba, descubrió un portal a 
+                    otra dimensión. Con valentía, exploró este nuevo mundo y regresó con conocimientos que cambiaron la humanidad para siempre.</p>
+                `
+            ];
+
+            // Seleccionar una plantilla al azar
+            const randomStory = storyTemplates[Math.floor(Math.random() * storyTemplates.length)];
+
+            // Mostrar el cuento
+            const storyOutput = document.getElementById('storyOutput');
+            storyOutput.innerHTML = randomStory;
+            storyOutput.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

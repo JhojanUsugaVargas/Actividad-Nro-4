@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Legends Store - Tienda de Música Rock y Merchandising</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-image: url('imagenes/twl5ap6ojin91.webp');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+            margin-right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+        }
+        header h1 {
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #store ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        #store li {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #store li img {
+            max-width: 100%;
+            height: auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        form label {
+            margin-top: 10px;
+        }
+        form input, form select, form textarea {
+            padding: 8px;
+            margin-top: 5px;
+        }
+        form .product-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        form .product-checkboxes label {
+            display: flex;
+            align-items: center;
+        }
+        form .product-checkboxes input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+        }
+        form .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        form button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #ffcc00;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const city = document.getElementById('city').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const checkboxes = document.querySelectorAll('input[name="products[]"]:checked');
+            let valid = true;
+
+            if (!name || !city || !address || !phone) {
+                alert('Por favor completa todos los campos obligatorios.');
+                valid = false;
+            }
+
+            if (checkboxes.length === 0) {
+                alert('Por favor selecciona al menos un producto.');
+                valid = false;
+            }
+
+            checkboxes.forEach(checkbox => {
+                const quantity = document.getElementById('quantity_' + checkbox.value).value;
+                if (!quantity || quantity <= 0) {
+                    alert('Por favor ingresa una cantidad válida para ' + checkbox.dataset.name);
+                    valid = false;
+                }
+            });
+
+            return valid;
+        }
+
+        function cancelForm() {
+            window.location.href = '#';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="imagenes/90821f2d19e5073c74501823c8fe5abe.jpg" alt="Logo Rock Legends Store">
+        <h1>Rock Legends Store</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">Nuestra Tienda On-line</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#contact">Contáctenos</a></li>
+            <li><a href="#quote">Solicitud de Cotización</a></li>
+            <li><a href="#store">Catálogo de Productos</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="store">
+            <h2>Catálogo de Productos</h2>
+            <p>Aquí encontrarás merchandising oficial de bandas legendarias del rock como Queen, Pink Floyd, Guns N' Roses, Aerosmith y más. Tenemos 20 artículos destacados:</p>
+            <ul>
+                <li><img src="imagenes/B1pppR4gVKL._CLa_2140,2000_612iVrQOfrL.png_0,0,2140,2000+0.0,0.0,2140.0,2000.0_UY1000_.jfif" alt="Camiseta Queen Bohemian Rhapsody">Camiseta Queen "Bohemian Rhapsody" - $25.000</li>
+                <li><img src="imagenes/l17-ceb3138000d1fcb40e17407083970942-480-0.jpg" alt="Buzo Pink Floyd Dark Side">Buzo Pink Floyd "Dark Side of the Moon" - $40.000</li>
+                <li><img src="imagenes/D_NQ_NP_890571-MCO45259855466_032021-O.webp" alt="Parche Guns N' Roses Logo">Parche Guns N' Roses Logo - $5.000</li>
+                <li><img src="imagenes/2a91810c2ed5343f438557ebc316ee59.jpg" alt="Camiseta Aerosmith Dream On">Camiseta Aerosmith "Dream On" - $25.000</li>
+                <li><img src="imagenes/buzos-para-hombre-60060488-9139_1.jpg" alt="Buzo Queen con Capucha">Buzo Queen con Capucha - $45.000</li>
+                <li><img src="imagenes/The_Wall_Cover.svg" alt="Poster Pink Floyd The Wall">Poster Pink Floyd "The Wall" - $15.000</li>
+                <li><img src="imagenes/D_NQ_NP_916814-MCO88831050005_072025-O.webp" alt="Gorra Guns N' Roses">Gorra Guns N' Roses - $20.000</li>
+                <li><img src="imagenes/images.jfif" alt="Camiseta Aerosmith Clásica">Camiseta Aerosmith Clásica - $25.000</li>
+                <li><img src="imagenes/9e9a880278dd90d7e48dc4c1d2963bba.jpg" alt="Parche Queen Crest">Parche Queen Crest - $5.000</li>
+                <li><img src="imagenes/pink-floyd-dark-side-blanco-f0fc6fd44c282c831017142390227725-640-0.png" alt="Buzo Pink Floyd Prism">Buzo Pink Floyd Prism - $40.000</li>
+                <li><img src="imagenes/71mRatE8AjL.jpg" alt="Taza Guns N' Roses">Taza Guns N' Roses - $10.000</li>
+                <li><img src="imagenes/800_619f9628ed5f5.webp" alt="Llavero Aerosmith">Llavero Aerosmith - $8.000</li>
+                <li><img src="imagenes/camiseta-queen-we-will-rock-you.webp" alt="Camiseta Queen We Will Rock You">Camiseta Queen "We Will Rock You" - $25.000</li>
+                <li><img src="imagenes/gdgdger.webp" alt="Buzo Guns N' Roses Appetite">Buzo Guns N' Roses "Appetite for Destruction" - $45.000</li>
+                <li><img src="imagenes/pfalbpat08.jpg" alt="Parche Pink Floyd Animals">Parche Pink Floyd Animals - $5.000</li>
+                <li><img src="imagenes/s-l400.jpg" alt="Poster Aerosmith Wings">Poster Aerosmith Wings - $15.000</li>
+                <li><img src="imagenes/comprar-online-camiseta-grupos-pink-floyd-wish-you-were-here.jpg" alt="Camiseta Pink Floyd Wish You Were Here">Camiseta Pink Floyd "Wish You Were Here" - $25.000</li>
+                <li><img src="imagenes/D_NQ_NP_783337-MLA84331496535_052025-O.webp" alt="Buzo Aerosmith Logo">Buzo Aerosmith Logo - $40.000</li>
+                <li><img src="imagenes/9554e1_003b0b0b027e40a5a263a7f7b6819d69~mv2.avif" alt="Gorra Queen">Gorra Queen - $20.000</li>
+                <li><img src="imagenes/D_NQ_NP_871190-MCO79425579813_092024-O.webp" alt="Taza Pink Floyd">Taza Pink Floyd - $10.000</li>
+            </ul>
+        </section>
+        
+        <section id="about">
+            <h2>Nuestra Tienda On-line</h2>
+            <p>Rock Legends Store es tu destino para merchandising de las mejores bandas de rock. Ofrecemos productos oficiales de Queen, Pink Floyd, Guns N' Roses, Aerosmith y muchas más. Nuestra misión es traer el espíritu del rock a tu guardarropa y hogar.</p>
+            <h3>Integrantes del Grupo</h3>
+            <ul>
+                <li>JHOJAN ARLEY USUGA VARGAS - ESTUDIANTE DE INGENIERIA DE SISTEMAS</li>
+                <li>JOHN MARIO ECHAVARRIA ENCISO - DOCENTE DE LENGUAJES DE PROGRAMACIÓN PARA LA WEB</li>
+            </ul>
+        </section>
+        
+        <section id="services">
+            <h2>Servicios</h2>
+            <p>Ofrecemos los siguientes servicios para mejorar tu experiencia de compra:</p>
+            <ul>
+                <li><strong>Envío a Domicilio:</strong> Entregamos tus productos directamente en tu puerta en todo el país, con opciones de envío express en 24-48 horas.</li>
+                <li><strong>Personalización de Merchandising:</strong> Personaliza camisetas, buzos y parches con diseños exclusivos o mensajes personalizados para eventos especiales.</li>
+            </ul>
+        </section>
+        
+        <section id="contact">
+            <h2>Contáctenos</h2>
+            <p>Estamos aquí para ayudarte. Contáctanos a través de:</p>
+            <ul>
+                <li>WhatsApp: +57 324 4791219</li>
+                <li>Celular: +57 324 4791219</li>
+                <li>Dirección: Carrera 7 #123-45, Bogotá, Colombia</li>
+            </ul>
+            <h3>Ubicación en Google Maps</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.795!2d-74.058!3d4.60971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a4d!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1723488000000!5m2!1ses!2sco" allowfullscreen="" loading="lazy"></iframe>
+        </section>
+        
+        <section id="quote">
+            <h2>Solicitud de Cotización</h2>
+            <p>Completa el formulario para solicitar una cotización personalizada.</p>
+            <form action="submit_quote.php" method="POST" onsubmit="return validateForm()">
+                <label for="name">Nombres y Apellidos:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="city">Ciudad:</label>
+                <select id="city" name="city" required>
+                    <option value="">Selecciona una ciudad</option>
+                    <option value="Bogotá">Bogotá</option>
+                    <option value="Medellín">Medellín</option>
+                    <option value="Cali">Cali</option>
+                    <option value="Barranquilla">Barranquilla</option>
+                    <option value="Cartagena">Cartagena</option>
+                </select>
+                
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="phone">Celular:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label>Productos de Interés:</label>
+                <div class="product-checkboxes">
+                    <label><input type="checkbox" name="products[]" value="1" data-name="Camiseta Queen Bohemian Rhapsody"> Camiseta Queen "Bohemian Rhapsody" ($25.000) <input type="number" id="quantity_1" name="quantity_1" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="2" data-name="Buzo Pink Floyd Dark Side"> Buzo Pink Floyd "Dark Side of the Moon" ($40.000) <input type="number" id="quantity_2" name="quantity_2" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="3" data-name="Parche Guns N' Roses Logo"> Parche Guns N' Roses Logo ($5.000) <input type="number" id="quantity_3" name="quantity_3" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="4" data-name="Camiseta Aerosmith Dream On"> Camiseta Aerosmith "Dream On" ($25.000) <input type="number" id="quantity_4" name="quantity_4" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="5" data-name="Buzo Queen con Capucha"> Buzo Queen con Capucha ($45.000) <input type="number" id="quantity_5" name="quantity_5" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="6" data-name="Poster Pink Floyd The Wall"> Poster Pink Floyd "The Wall" ($15.000) <input type="number" id="quantity_6" name="quantity_6" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="7" data-name="Gorra Guns N' Roses"> Gorra Guns N' Roses ($20.000) <input type="number" id="quantity_7" name="quantity_7" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="8" data-name="Camiseta Aerosmith Clásica"> Camiseta Aerosmith Clásica ($25.000) <input type="number" id="quantity_8" name="quantity_8" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="9" data-name="Parche Queen Crest"> Parche Queen Crest ($5.000) <input type="number" id="quantity_9" name="quantity_9" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="10" data-name="Buzo Pink Floyd Prism"> Buzo Pink Floyd Prism ($40.000) <input type="number" id="quantity_10" name="quantity_10" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="11" data-name="Taza Guns N' Roses"> Taza Guns N' Roses ($10.000) <input type="number" id="quantity_11" name="quantity_11" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="12" data-name="Llavero Aerosmith"> Llavero Aerosmith ($8.000) <input type="number" id="quantity_12" name="quantity_12" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="13" data-name="Camiseta Queen We Will Rock You"> Camiseta Queen "We Will Rock You" ($25.000) <input type="number" id="quantity_13" name="quantity_13" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="14" data-name="Buzo Guns N' Roses Appetite"> Buzo Guns N' Roses "Appetite for Destruction" ($45.000) <input type="number" id="quantity_14" name="quantity_14" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="15" data-name="Parche Pink Floyd Animals"> Parche Pink Floyd Animals ($5.000) <input type="number" id="quantity_15" name="quantity_15" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="16" data-name="Poster Aerosmith Wings"> Poster Aerosmith Wings ($15.000) <input type="number" id="quantity_16" name="quantity_16" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="17" data-name="Camiseta Pink Floyd Wish You Were Here"> Camiseta Pink Floyd "Wish You Were Here" ($25.000) <input type="number" id="quantity_17" name="quantity_17" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="18" data-name="Buzo Aerosmith Logo"> Buzo Aerosmith Logo ($40.000) <input type="number" id="quantity_18" name="quantity_18" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="19" data-name="Gorra Queen"> Gorra Queen ($20.000) <input type="number" id="quantity_19" name="quantity_19" min="0"></label>
+                    <label><input type="checkbox" name="products[]" value="20" data-name="Taza Pink Floyd"> Taza Pink Floyd ($10.000) <input type="number" id="quantity_20" name="quantity_20" min="0"></label>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit">Enviar Datos</button>
+                    <button type="button" onclick="cancelForm()">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
